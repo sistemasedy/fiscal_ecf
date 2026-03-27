@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_move_cancel_form" model="ir.ui.view">
+        <field name="name">account.move.cancel.form</field>
+        <field name="model">account.move.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Anular Factura DGII">
+                <group>
+                    <field name="l10n_do_cancellation_type"/>
+                </group>
+                <footer>
+                    <button string="Confirmar Anulación" name="move_cancel" type="object" class="oe_highlight"/>
+                    <button string="Descartar" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_move_cancel" model="ir.actions.act_window">
+        <field name="name">Anular Factura DGII</field>
+        <field name="res_model">account.move.cancel</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_account_move_reversal_l10n_do" model="ir.ui.view">
+        <field name="name">account.move.reversal.l10n.do</field>
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="account.view_account_move_reversal"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reason']" position="after">
+                <field name="l10n_do_ecf_modification_code"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

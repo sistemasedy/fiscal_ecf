@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_l10n_do" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.l10n.do</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//group[@name='accounting_info_group']" position="after">
+                <group string="Datos Fiscales DGII" name="l10n_do_fiscal_group" invisible="country_code != 'DO'">
+                    <field name="l10n_do_expense_type" invisible="move_type not in ('in_invoice', 'in_refund', 'in_receipt')"/>
+                    <field name="l10n_do_income_type" invisible="move_type not in ('out_invoice', 'out_refund', 'out_receipt')"/>
+                    <field name="l10n_do_cancellation_type" readonly="1" invisible="state != 'cancel'"/>
+                    <field name="l10n_do_origin_ncf" readonly="1" invisible="not l10n_do_origin_ncf"/>
+                </group>
+                
+                <group string="Facturación Electrónica (e-CF)" name="l10n_do_ecf_group" invisible="country_code != 'DO'">
+                    <field name="l10n_do_ecf_send_state" readonly="1" widget="badge" 
+                           decoration-info="l10n_do_ecf_send_state == 'to_send'" 
+                           decoration-warning="l10n_do_ecf_send_state == 'sent'" 
+                           decoration-success="l10n_do_ecf_send_state == 'delivered_accepted'" 
+                           decoration-danger="l10n_do_ecf_send_state == 'delivered_rejected'"/>
+                    <field name="l10n_do_ecf_trackid" readonly="1"/>
+                    <field name="l10n_do_ecf_security_code" readonly="1"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

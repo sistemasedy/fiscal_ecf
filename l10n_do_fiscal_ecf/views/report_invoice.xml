@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_inherited_l10n_do_ecf" inherit_id="account.report_invoice_document">
+        
+        <xpath expr="//div[hasclass('clearfix')]" position="after">
+            
+            <div class="row mt-4 pt-3" style="border-top: 1px solid #dee2e6;" t-if="o.l10n_do_ecf_security_code">
+                <div class="col-3 text-center">
+                    <img t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=130&amp;height=130' % o.l10n_do_ecf_qr_string" 
+                         style="width:130px;height:130px;"/>
+                </div>
+                
+                <div class="col-9" style="font-size: 0.9em;">
+                    <h5 style="color: #495057;"><strong>Representación Impresa del e-CF</strong></h5>
+                    <p class="mb-1">
+                        <strong>e-NCF: </strong> <span t-field="o.name"/><br/>
+                        <strong>Código de Seguridad: </strong> <span t-field="o.l10n_do_ecf_security_code" style="font-family: monospace; font-size: 1.2em;"/>
+                    </p>
+                    <p class="text-muted" style="font-size: 0.85em;">
+                        El presente documento sirve como Representación Impresa de un Comprobante Fiscal Electrónico (e-CF). 
+                        Puede validar la veracidad de este documento escaneando el código QR con la aplicación de la DGII.
+                    </p>
+                </div>
+            </div>
+            
+        </xpath>
+        
+    </template>
+</odoo>

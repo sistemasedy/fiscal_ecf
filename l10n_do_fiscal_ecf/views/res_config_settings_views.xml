@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_l10n_do_ecf" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.l10n.do.ecf</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//block[@id='invoicing_settings']" position="after">
+                <block title="Facturación Electrónica DGII (e-CF)" id="l10n_do_ecf_settings" invisible="country_code != 'DO'">
+                    
+                    <setting id="ecf_environment" string="Entorno de Conexión" help="Seleccione a qué servidores de la DGII se conectará Odoo.">
+                        <field name="l10n_do_ecf_env" widget="radio"/>
+                    </setting>
+
+                    <setting id="ecf_certificate" string="Certificado Digital" help="Cargue el archivo .p12 para firmar los XML.">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="l10n_do_ecf_certificate" class="col-lg-5 o_light_label" string="Archivo del Certificado"/>
+                                <field name="l10n_do_ecf_certificate" filename="cert_filename" class="col-lg-7"/>
+                            </div>
+                            <div class="row mt8">
+                                <label for="l10n_do_ecf_cert_password" class="col-lg-5 o_light_label" string="Contraseña"/>
+                                <field name="l10n_do_ecf_cert_password" password="True" class="col-lg-7"/>
+                            </div>
+                            
+                            <div class="row mt16" invisible="not l10n_do_ecf_certificate">
+                                <div class="col-12">
+                                    <span class="text-success" invisible="not l10n_do_ecf_cert_is_valid">
+                                        <i class="fa fa-check"/> Certificado válido y contraseña correcta.
+                                    </span>
+                                    <span class="text-danger" invisible="l10n_do_ecf_cert_is_valid">
+                                        <i class="fa fa-times"/> Error: La contraseña es incorrecta o el archivo está corrupto.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+
+                </block>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

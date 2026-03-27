@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_property_form_l10n_do" model="ir.ui.view">
+        <field name="name">res.partner.property.form.inherit.l10n.do</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//group[@name='accounting_entries']" position="before">
+                <group string="Fiscalidad DGII (Rep. Dominicana)" name="l10n_do_fiscal_info">
+                    <field name="l10n_do_dgii_tax_payer_type" widget="selection"/>
+                    <field name="l10n_do_expense_type" widget="selection"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

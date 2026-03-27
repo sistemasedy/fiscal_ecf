@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_form_l10n_do" model="ir.ui.view">
+        <field name="name">account.journal.form.inherit.l10n.do</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//page[@name='advanced_settings']" position="inside">
+                <group string="Configuración DGII" invisible="country_code != 'DO'">
+                    <field name="l10n_do_payment_form"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
